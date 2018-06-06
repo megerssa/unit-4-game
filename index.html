@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<link href="https://fonts.googleapis.com/css?family=Faster+One|Norican" rel="stylesheet">
+<title> CRYSTAL GUESSING GAME</title>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="assets/css/reset.css">
+<link rel="stylesheet" type="text/css" href="assets/css/style.css">
+<link href="https://fonts.googleapis.com/css?family=Norican" rel="stylesheet">  
+<link href="https://fonts.googleapis.com/css?family=Faster+One|Norican" rel="stylesheet">
+
+</head>
+<body>
+<header >
+
+<div class="jumbotron">
+  <h1 style= "font-size: 80px">Crystals Collector Game!</h1>
+  <p><h2 style=" font-family: 'Norican', cursive;">Rules of the game:</h2>
+        <div>At the beggining of the game you will have a rondom number.</div>
+        <div> By clicking on a Crystals you will add a specific amount of points to your total score.</div>
+        <div>You will win the game by matching your total score to a random number.<br> You lose the game if your total score goes above the random number.</div>
+        <div>The value of each crystal is hidden from you until you click on it.</div>
+        <div><h3 style=" font-family: 'Norican', cursive;"  >Click on start to get Started!</h3></div>
+  </p>
+  
+</div>
+
+</header>
+
+
+
+
+<p><input type="button" id="reset" class="btn btn-primary btn-lg" style="cursor:pointer; margin-left: 10px; font-size:18px;" value="Start / Reset "></a></p>
+
+<p><span id="number"></span></p>
+
+<div id="numberToGuess"><h3>45</h3></div>
+
+<p><span id="yourNumber"></span></p>
+
+<div id="crystals">
+</div>
+
+<script
+  src="https://code.jquery.com/jquery-3.3.1.js"
+  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+  crossorigin="anonymous"></script>
+<script type="text/javascript">
+  $( document ).ready(function() {
+    var numberToGuess = 45;
+    var counter = 0;
+    var number1 = [9];
+    var number2 = [4];
+    var number3 = [5];
+    var number4 = [2];
+    $('number1 number2 number3 number4').text(numberToGuess);
+    for (var i=0; i< number1.length; i++){
+      var imageCrystal1 = $('<img>');
+      
+      imageCrystal1.attr('data-num', number1[i]);
+      imageCrystal1.attr('src', 'http://img1.wikia.nocookie.net/__cb20110114234409/starcraftfanfiction/images/e/e8/Talram_Crystal.PNG');
+      imageCrystal1.attr('alt', 'green crystal');
+      imageCrystal1.addClass('crystalImage');
+      $('#crystals').append(imageCrystal1);
+    }
+    for (var i=0; i< number2.length; i++){
+      var imageCrystal2 = $('<img>');
+      
+      imageCrystal2.attr('data-num', number2[i]);
+      imageCrystal2.attr('src', 'http://vignette3.wikia.nocookie.net/starcraftfanfiction/images/b/b8/Alliram.PNG/revision/latest?cb=20110114234131');
+      imageCrystal2.attr('alt', 'blue crystal');
+      imageCrystal2.addClass('crystalImage');
+      $('#crystals').append(imageCrystal2);
+    }
+    for (var i=0; i< number3.length; i++){
+      var imageCrystal3 = $('<img>');
+      
+      imageCrystal3.attr('data-num', number3[i]);
+      imageCrystal3.attr('src', 'http://vignette1.wikia.nocookie.net/starcraftfanfiction/images/5/59/Temril_Crystal.PNG/revision/latest?cb=20110114234517');
+      imageCrystal3.attr('alt', 'red crystal');
+      imageCrystal3.addClass('crystalImage');
+      $('#crystals').append(imageCrystal3);
+    }
+    for (var i=0; i< number4.length; i++){
+      var imageCrystal4 = $('<img>');
+      
+      imageCrystal4.attr('data-num', number4[i]);
+      imageCrystal4.attr('src', 'http://vignette3.wikia.nocookie.net/starcraftfanfiction/images/5/5b/Savraj_Crystal.PNG/revision/latest?cb=20110114234233');
+      imageCrystal4.attr('alt', 'purple crystal');
+      imageCrystal4.addClass('crystalImage');
+      $('#crystals').append(imageCrystal4);
+    }
+    
+    $('#reset').on('click', function(){
+        reset();
+    });
+    function reset(){
+      console.log("made it");
+      counter = 0;      
+      $('#yourNumber').text(counter);
+      number1 = [4];
+      number2 = [5];
+      number3 = [2];
+      number4 = [9];
+      $('number1 number2 number3 number4').text(numberToGuess);
+      console.log('Is it working');
+    };
+    $('.crystalImage').on('click', function(){
+      counter = counter + parseInt($(this).data('num'));
+      
+      $('#yourNumber').text(counter);
+      if (counter == numberToGuess){
+        alert('You won!');
+        reset();
+        console.log("try it");
+      }else if( counter > numberToGuess){
+        alert('You lost!');
+        reset();
+      }
+    });
+  
+  });
+</script>
+</body>
+  
+</html>
